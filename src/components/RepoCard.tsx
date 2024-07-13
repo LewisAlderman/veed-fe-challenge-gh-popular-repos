@@ -1,4 +1,4 @@
-import dayjs from "dayjs";
+import dayjs from "../lib/dayjs";
 import {SearchReposResponseData} from "../lib/api";
 import {useFavouritesStore} from "../lib/favourites";
 import {cn} from "../lib/utils";

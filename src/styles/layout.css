@@ -1,0 +1,11 @@
+html, body {
+	scrollbar-gutter: stable both-edges;
+}
+
+#root {
+	display: flex;
+	flex-direction: column;
+	min-height: 100dvh;
+
+	@apply lg:flex-row
+}
