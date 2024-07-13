@@ -1,6 +1,11 @@
 
 import {Endpoints} from "@octokit/types"
 import {useEffect, useState} from "react";
+import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "./components/ui/card";
+import dayjs from "dayjs";
+import RelativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(RelativeTime);
 
 // Consideration: Can we guarantee sync/parity between the types and the actual
 // API response - use actual Octokit lib? 
@@ -34,10 +39,60 @@ function App() {
   }, []);
 
   return (
-    <ul className="list-none">
+    <ul className="list-none flex flex-wrap *:basis-[350px] gap-5">
       {searchData?.items.map((item) => (
-        <li key={item.id}>
-          {item.full_name}
+        <li key={item.id} className="flex flex-col">
+          <Card className="flex-1 flex flex-col">
+            <CardHeader>
+
+              {/* Repo title */}
+              <CardTitle className="leading-snug break-all text-balance">
+                {item.owner?.login}
+                {' '}/{' '}
+                <a href={item.html_url} target="_blank" className="group inline-block relative hover:text-blue-500">
+                  {item.name}
+                  <span className="opacity-0 absolute top-1/2 -translate-y-1/2 group-hover:opacity-50 text-xs  pl-2">⤴</span>
+                </a>
+              </CardTitle>
+
+              {/* Time ago */}
+              <CardDescription>
+                {dayjs(item.created_at).fromNow()}
+              </CardDescription>
+
+            </CardHeader>
+
+            {/* Description */}
+            <CardContent className="flex-1">
+              <p className="line-clamp-3 min-h-[3lh]" title={item.description ?? ""}>
+                {item.description ?? "\u00A0" /*&nbsp;*/}
+              </p>
+            </CardContent>
+
+            <CardFooter>
+              <CardDescription>
+                <ul className="flex gap-x-2 items-baseline [&>*:not(:last-child)]:after:content-['·'] [&>*:not(:last-child)]:after:ml-2 [&>*:not(:last-child)]:after:opacity-30">
+                  {/* Stars */}
+                  <li>
+                    <span aria-hidden className="leading-[20px] select-none align-top opacity-70 mr-1">
+                      ☆
+                    </span>
+
+                    {item.stargazers_count} stars
+                  </li>
+
+                  {/* Lang */}
+                  {item.language && (
+                    <li>
+                      <span aria-hidden className="text-xs leading-[20px] select-none align-top opacity-50 mr-1">{`{ }`}</span>
+
+                      {item.language}
+                    </li>
+                  )}
+                </ul>
+              </CardDescription>
+            </CardFooter>
+          </Card>
         </li>
       ))}
     </ul>
