@@ -1,30 +1,21 @@
-# React + TypeScript + Vite
+# VEED FE Challenge: Popular recent Github Repos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ref: [https://veed.notion.site/Frontend-Coding-Challenge-V2-1-72e36c449dde455ea6417d8ad0483c9c](https://veed.notion.site/Frontend-Coding-Challenge-V2-1-72e36c449dde455ea6417d8ad0483c9c)
 
-Currently, two official plugins are available:
+### Exercise 🏋️‍♀️
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The idea of this project is to implement a small client application for discovering trending repositories on GitHub.
 
-## Expanding the ESLint configuration
+* A list of the repositories created in the last 7 days with the most number of stars in github should be displayed and the user should be able to favourite them
+* The favourited repositories should be visible either through a filter or in a different tab. Some basic info about the repo should be displayed, such as repo name, link to GitHub, description and number of stars.
+* To keep things simple, the favourites won’t be sent back to GitHub’s servers but just stored locally (e.g localstorage, cookies etc...).
+* Feel free to use whichever libraries/design systems you like to achieve the task.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+🍎 Bonus task: if time allows, the ability to filter the repos by the languages used would be an awesome addition to have
 
-- Configure the top-level `parserOptions` property like this:
+### Implementation Details 🔎
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+GitHub provides a public search endpoint which you can use for fetching the most starred repositories:
+[https://api.github.com/search/repositories?q=created:&gt;2017-01-10&amp;sort=stars&amp;order=desc](https://api.github.com/search/repositories?q=created:%3E2017-01-10&sort=stars&order=desc)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+We value: clear, easy to understand code, that handles errors gracefully, and tests. The technology you use is up to you, but we work with React so seeing this in the solution is always great as well.
