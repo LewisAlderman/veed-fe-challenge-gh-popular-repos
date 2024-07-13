@@ -1,0 +1,398 @@
+/*
+
+An opionated mashup of the following sources:
+
+  - [John Meyer's reset](https://meyerweb.com/eric/tools/css/reset/)
+  - [Normalize.css](https://github.com/necolas/normalize.css/blob/master/normalize.css)
+  - [Ress.css](https://github.com/filipelinhares/ress/blob/master/ress.css)
+  - [Sanitize.css](https://github.com/csstools/sanitize.css/)
+  - [hankchizljaw/modern-css-reset](https://github.com/hankchizljaw/modern-css-reset/blob/master/src/reset.css)
+	
+...plus some of our own.
+	
+//////////////////////
+Table of contents:
+  - Base rules
+  - Utility classes
+\\\\\\\\\\\\\\\\\\\\\\
+
+*/
+
+/***************************
+* Base rules
+***************************/
+
+:where(:root) {
+	box-sizing: border-box;
+	word-break: normal;
+	-moz-tab-size: 4;
+	tab-size: 4;
+  --accent-color: royalblue;
+  accent-color: var(--accent-color);
+  outline-color: var(--accent-color);
+  caret-color: var(--accent-color);
+}
+
+:where(*, *::before, *::after) {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	box-sizing: inherit;
+	font-size: 100%;
+	font: inherit;
+	background-repeat: no-repeat;
+	text-decoration: inherit;
+	vertical-align: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	:where(*, ::before, ::after) {
+		animation-delay: -1ms !important;
+		animation-duration: 1ms !important;
+		animation-iteration-count: 1 !important;
+		background-attachment: initial !important;
+		scroll-behavior: auto !important;
+		transition-delay: 0s !important; /* 4 */
+		transition-duration: 0s !important; /* 4 */
+	}
+	:where(html:focus-within) {
+		scroll-behavior: auto;
+	}
+}
+
+:where(:root, html, body) {
+	min-height: 100vh;
+	text-rendering: optimizeSpeed;
+	line-height: 1.5;
+	-webkit-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+	vertical-align: baseline;
+	-webkit-tap-highlight-color: transparent;
+}
+
+:where(body) {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		"Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+		"Segoe UI Symbol", "Noto Color Emoji";
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+@supports (not (height:1dvh)) and (-webkit-touch-callout: none)  {
+	:where(body, html, :root) {
+		min-height: -webkit-fill-available !important; /*fixes iOS safari*/
+	}
+}
+
+@supports (height:1dvh) {
+	:where(body, html, :root) {
+		min-height: 100dvh;
+	}
+}
+
+:where(h1, h2, h3, h4) {
+	font-size: inherit;
+	font-weight: inherit;
+  text-wrap: balance;
+}
+
+:where(hr) {
+	box-sizing: content-box;
+	height: 0;
+	overflow: visible;
+	color: inherit;
+}
+
+:where(p) {
+	max-width: 75ch;
+}
+
+:where(a:not([class])) {
+	color: inherit;
+	background-color: transparent;
+	text-decoration-skip-ink: auto;
+}
+
+:where(a:active, a:hover) {
+	outline-width: 0;
+}
+
+:where(b, strong) {
+	font-weight: bolder;
+}
+
+:where(code, kbd, pre, samp) {
+	font-family: ui-monospace, "Menlo", "Roboto Mono", "Ubuntu Monospace",
+		"Noto Mono", "Oxygen Mono", "Liberation Mono", "Consolas", monospace,
+		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	font-size: 1em;
+}
+
+:where(pre) {
+	overflow: auto;
+}
+
+:where(small) {
+	font-size: 80%;
+}
+
+:where(sub, sup) {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+:where(sub) {
+	bottom: -0.25em;
+}
+
+:where(sup) {
+	top: -0.5em;
+}
+
+:where(img, picture, video, object, embed) {
+	max-width: 100%;
+	height: auto;
+	display: block;
+	border-style: none;
+	-webkit-user-drag: none;
+}
+
+:where(iframe, input, select, textarea) {
+	height: auto;
+	max-width: 100%;
+}
+
+:where(img) {
+	font-style: italic;
+	vertical-align: middle;
+}
+
+:where(audio, canvas, iframe, svg, video) {
+	vertical-align: middle;
+}
+
+:where(iframe) {
+	border-style: none;
+}
+
+:where(svg:not([fill])) {
+	fill: currentColor;
+}
+
+:where(svg:not(:root)) {
+	overflow: hidden;
+}
+
+:where(
+	img:not([aria-hidden="true"]):not([alt]),
+	img:not([aria-hidden="true"])[alt=""]
+	) {
+	outline: 5px dashed red;
+}
+
+:where(button, input, optgroup, select, textarea) {
+	font: inherit;
+	font-size: 100%;
+	letter-spacing: inherit;
+	line-height: 1.15;
+	margin: 0;
+	background-color: transparent;
+	color: inherit;
+	border-style: none;
+}
+
+:where([type="color"], [type="range"]) {
+	border-width: 0;
+	padding: 0;
+}
+
+:where(button, [type="button"], [type="reset"], [type="submit"]) {
+	-webkit-appearance: button;
+}
+
+:where(button, [type="button"], [type="reset"], [type="submit"], [role="button"]) {
+	cursor: pointer;
+	color: inherit;
+	user-select: none;
+}
+
+:where(a, input, button, [type="button"], [type="reset"], [type="submit"], [role="button"]) {
+	touch-action: manipulation;
+}
+
+:where(button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focusring, [type="submit"]:-moz-focusring) {
+	outline: 1px dotted ButtonText;
+}
+
+:where(button::-moz-focus-inner, [type="button"]::-moz-focus-inner, [type="reset"]::-moz-focus-inner, [type="submit"]::-moz-focus-inner) {
+	border-style: none;
+	padding: 0;
+}
+
+:where(button, input) {
+	overflow: visible;
+}
+
+:where(input) {
+	border-radius: 0;
+}
+
+:where(button, select) {
+	text-transform: none;
+}
+
+:where(select) {
+	-moz-appearance: none; /* Firefox 36+ */
+	-webkit-appearance: none; /* Chrome 41+ */
+}
+
+select::-ms-expand {
+	display: none; /* Internet Explorer 11+ */
+}
+
+select::-ms-value {
+	color: currentColor; /* Internet Explorer 11+ */
+}
+
+:where(progress) {
+	vertical-align: baseline;
+}
+
+:where(:-moz-ui-invalid) {
+	box-shadow: none;
+}
+
+:where([type="checkbox"], [type="radio"]) {
+	box-sizing: border-box;
+	padding: 0;
+}
+
+:where([type="number"]::-webkit-inner-spin-button, [type="number"]::-webkit-outer-spin-button) {
+	height: auto;
+}
+
+:where([type="search"]) {
+	-webkit-appearance: textfield;
+	outline-offset: -2px;
+}
+
+:where([type="search"]::-webkit-search-decoration) {
+	-webkit-appearance: none;
+}
+
+:where(::-webkit-file-upload-button) {
+	-webkit-appearance: button;
+	font: inherit;
+}
+
+:where(::-webkit-input-placeholder) {
+	color: inherit;
+	opacity: 0.54;
+}
+
+:where(main, details) {
+	display: block;
+}
+
+:where(summary) {
+	display: list-item;
+}
+
+:where(template) {
+	display: none;
+}
+
+:where(legend) {
+	box-sizing: border-box;
+	color: inherit;
+	display: table;
+	max-width: 100%;
+	padding: 0;
+	white-space: normal;
+	border: 0; /* Correct `color` not being inherited in IE 8/9/10/11 */
+}
+
+:where(abbr[title], acronym[title], dfn) {
+	cursor: help;
+	border-bottom: none;
+	text-decoration: underline;
+	text-decoration: underline dotted;
+}
+
+:where(textarea) {
+	resize: none;
+	overflow: auto;
+}
+
+:where([disabled]) {
+	cursor: default;
+}
+
+:where([hidden]) {
+	display: none;
+}
+
+:where([tabindex="-1"]) {
+	outline: none !important;
+}
+
+:where([aria-hidden="false"][hidden]:not(:focus)) {
+	clip: rect(0, 0, 0, 0);
+	position: absolute;
+}
+
+:where([aria-disabled="true"]) {
+	cursor: default;
+	pointer-events: none;
+}
+
+:where(ol, ul) {
+	list-style: none;
+}
+
+:where(blockquote,
+q) {
+	quotes: none;
+}
+
+:where(blockquote:before, blockquote:after, q:before, q:after) {
+	content: "";
+	content: none;
+}
+
+:where(table) {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-color: inherit;
+	text-indent: 0;
+}
+
+:where([aria-busy="true"]) {
+	cursor: progress;
+}
+
+:where([aria-controls]) {
+	cursor: pointer;
+}
+
+:where(dialog) {
+	background-color: white;
+	border: solid;
+	color: black;
+	height: -moz-fit-content;
+	height: fit-content;
+	left: 0;
+	margin: auto;
+	padding: 1em;
+	position: absolute;
+	right: 0;
+	width: -moz-fit-content;
+	width: fit-content;
+}
+
+:where(dialog:not([open])) {
+	display: none;
+}

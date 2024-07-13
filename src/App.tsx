@@ -34,9 +34,13 @@ function App() {
   }, []);
 
   return (
-    <>
-      <div><pre>{JSON.stringify(searchData, null, 2)}</pre></div>
-    </>
+    <ul className="list-none">
+      {searchData?.items.map((item) => (
+        <li key={item.id}>
+          {item.full_name}
+        </li>
+      ))}
+    </ul>
   )
 }
 
