@@ -57,7 +57,7 @@ function App() {
 
               {/* Time ago */}
               <CardDescription>
-                {dayjs(item.created_at).fromNow()}
+                <span className="sr-only">Created</span> {dayjs(item.created_at).fromNow()}
               </CardDescription>
 
             </CardHeader>
@@ -74,17 +74,19 @@ function App() {
                 <ul className="flex gap-x-2 items-baseline [&>*:not(:last-child)]:after:content-['·'] [&>*:not(:last-child)]:after:ml-2 [&>*:not(:last-child)]:after:opacity-30">
                   {/* Stars */}
                   <li>
-                    <span aria-hidden className="leading-[20px] select-none align-top opacity-70 mr-1">
+                    <span aria-hidden className="leading-[20px] select-none align-top opacity-50 mr-1 font-light">
                       ☆
                     </span>
 
-                    {item.stargazers_count} stars
+                    {item.stargazers_count} <span className="sr-only">stars</span>
                   </li>
 
                   {/* Lang */}
                   {item.language && (
                     <li>
                       <span aria-hidden className="text-xs leading-[20px] select-none align-top opacity-50 mr-1">{`{ }`}</span>
+
+                      <span className="sr-only">Written in</span>
 
                       {item.language}
                     </li>
