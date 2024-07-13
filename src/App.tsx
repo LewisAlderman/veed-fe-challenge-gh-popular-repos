@@ -67,7 +67,7 @@ function App() {
   }, []);
 
   return (
-    <ul className="list-none flex flex-wrap *:basis-[350px] gap-5">
+    <ul className="list-none flex max-sm:flex-col flex-wrap *:basis-[min(100%,350px)] gap-5 justify-center p-5">
       {searchData?.items.map((item) => {
         const isFavourite = favourites.includes(item.id);
 
@@ -75,9 +75,9 @@ function App() {
           <li key={item.id} className="flex flex-col">
             <Card className="flex-1 flex flex-col">
               <CardHeader>
-                <div className="flex">
+                <div className="flex items-baseline">
                   {/* Repo title */}
-                  <CardTitle className="grow leading-snug break-all text-balance -mt-[0.2lh]">
+                  <CardTitle className="grow leading-snug break-all text-balance -mt-[0.2lh] max-lg:text-base max-xl:text-lg max-2xl:text-xl">
                     {item.owner?.login}
                     {' '}/{' '}
                     <a href={item.html_url} target="_blank" className="group inline-block relative hover:text-blue-500">
@@ -86,7 +86,7 @@ function App() {
                     </a>
                   </CardTitle>
 
-                  <Button variant={"ghost"} className={cn("-mr-3 text-xl", isFavourite ? "text-orange-400" : "opacity-30")} onClick={() => toggleFavourite(item.id)}>
+                  <Button variant={"ghost"} className={cn("-mr-3 -mt-2 text-xl", isFavourite ? "text-orange-400" : "opacity-30")} onClick={() => toggleFavourite(item.id)}>
                     <span aria-hidden>
                       {isFavourite ? "★" : "☆"}
                     </span>
@@ -103,7 +103,7 @@ function App() {
 
               {/* Description */}
               <CardContent className="flex-1">
-                <p className="line-clamp-3 min-h-[3lh]" title={item.description ?? ""}>
+                <p className="line-clamp-3 sm:min-h-[3lh] max-sm:text-sm" title={item.description ?? ""}>
                   {item.description ?? "\u00A0" /*&nbsp;*/}
                 </p>
               </CardContent>
