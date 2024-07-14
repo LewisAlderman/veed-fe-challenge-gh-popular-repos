@@ -1,4 +1,4 @@
-import {useEffect, useMemo, useState} from "react";
+import {useMemo, useState} from "react";
 
 import {useFavouritesStore} from "./lib/favourites";
 import RepoCard from "./components/RepoCard";
