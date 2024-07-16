@@ -51,28 +51,26 @@ const RepoCard: React.FC<{
 				</CardContent>
 
 				<CardFooter>
-					<CardDescription>
-						<ul className="flex gap-x-2 items-baseline [&>*:not(:last-child)]:after:content-['·'] [&>*:not(:last-child)]:after:ml-2 [&>*:not(:last-child)]:after:opacity-30">
-							{/* Stars */}
-							<li>
-								<span aria-hidden className="leading-[20px] select-none align-top opacity-50 mr-1 font-light">
-									☆
-								</span>
+					<CardDescription role="list" className="flex gap-x-2 items-baseline [&>*:not(:last-child)]:after:content-['·'] [&>*:not(:last-child)]:after:ml-2 [&>*:not(:last-child)]:after:opacity-30">
+						{/* Stars */}
+						<span role="listitem">
+							<span aria-hidden className="leading-[20px] select-none align-top opacity-50 mr-1 font-light">
+								☆
+							</span>
 
-								{item.stargazers_count} <span className="sr-only">stars</span>
-							</li>
+							{item.stargazers_count} <span className="sr-only">stars</span>
+						</span>
 
-							{/* Lang */}
-							{item.language && (
-								<li>
-									<span aria-hidden className="text-xs leading-[20px] select-none align-top opacity-50 mr-1">{`{ }`}</span>
+						{/* Lang */}
+						{item.language && (
+							<span role="listitem">
+								<span aria-hidden className="text-xs leading-[20px] select-none align-top opacity-50 mr-1">{`{ }`}</span>
 
-									<span className="sr-only">Written in</span>
+								<span className="sr-only">Written in</span>
 
-									{item.language}
-								</li>
-							)}
-						</ul>
+								{item.language}
+							</span>
+						)}
 					</CardDescription>
 				</CardFooter>
 			</Card>
